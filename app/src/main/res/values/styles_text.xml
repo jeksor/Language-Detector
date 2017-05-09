@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<style name="Text" parent="android:TextAppearance">
+		<!-- add custom font path here if need-->
+	</style>
+	
+	<style name="Text.Primary">
+		<item name="android:textSize">@dimen/text_primary_size</item>
+	</style>
+	
+	<style name="Text.Primary.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<style name="Text.Primary.Light">
+		<item name="android:textColor">@color/text_primary_light</item>
+	</style>
+	
+	<style name="Text.Primary.Light.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<style name="Text.Primary.Dark">
+		<item name="android:textColor">@color/text_primary_dark</item>
+	</style>
+	
+	<style name="Text.Primary.Dark.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<style name="Text.Secondary">
+		<item name="android:textSize">@dimen/text_secondary_size</item>
+	</style>
+	
+	<style name="Text.Secondary.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<style name="Text.Secondary.Light">
+		<item name="android:textColor">@color/text_secondary_light</item>
+	</style>
+	
+	<style name="Text.Secondary.Light.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<style name="Text.Secondary.Dark">
+		<item name="android:textColor">@color/text_secondary_dark</item>
+	</style>
+	
+	<style name="Text.Secondary.Dark.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<style name="Text.Button">
+		<item name="android:textSize">@dimen/text_button_size</item>
+	</style>
+	
+	<style name="Text.Button.Light">
+		<item name="android:textColor">@color/text_button_light</item>
+	</style>
+	
+	<style name="Text.Button.Light.Bold">
+		<item name="android:textColor">@color/text_button_light</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<style name="Text.BlankScreen">
+		<item name="android:textSize">@dimen/text_high_size</item>
+		<item name="android:textColor">@color/colorPrimary</item>
+	</style>
+</resources>

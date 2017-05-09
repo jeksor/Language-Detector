@@ -1,0 +1,17 @@
+<resources>
+	<!-- base margins -->
+	<dimen name="tiny_margin">4dp</dimen>
+	<dimen name="minor_margin">8dp</dimen>
+	<dimen name="modest_margin">16dp</dimen>
+	<dimen name="rich_margin">32dp</dimen>
+	
+	<!-- text -->
+	<dimen name="text_primary_size">16sp</dimen>
+	<dimen name="text_secondary_size">14sp</dimen>
+	<dimen name="text_high_size">24sp</dimen>
+	<dimen name="text_low_size">12sp</dimen>
+	<dimen name="text_button_size">18sp</dimen>
+	
+	<!-- other widget -->
+	<dimen name="nav_header_height">160dp</dimen>
+</resources>

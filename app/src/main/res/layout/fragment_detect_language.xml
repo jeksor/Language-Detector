@@ -1,0 +1,32 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<android.support.design.widget.TextInputLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/modest_margin">
+		
+		<android.support.design.widget.TextInputEditText
+			android:id="@+id/inputEditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/hint_detect_text_input"
+			android:inputType="textAutoComplete|textMultiLine"
+			android:maxLines="10"
+			tools:text="Name" />
+	</android.support.design.widget.TextInputLayout>
+	
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/detectLanguageButton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|end"
+		android:layout_margin="@dimen/modest_margin"
+		android:clickable="true"
+		app:fabSize="normal"
+		app:srcCompat="@drawable/ic_detect_language_white" />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -55,7 +55,7 @@ android {
 
 		dev {
 			signingConfig signingConfigs.debug
-			minifyEnabled true
+			minifyEnabled false
 			debuggable true
 			proguardFile getDefaultProguardFile('proguard-android.txt')
 			proguardFiles file('../config/proguard').listFiles()

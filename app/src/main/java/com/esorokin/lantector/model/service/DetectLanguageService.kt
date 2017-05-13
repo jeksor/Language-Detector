@@ -3,7 +3,7 @@ package com.esorokin.lantector.model.service
 import com.esorokin.lantector.model.ModelWrapper
 import com.esorokin.lantector.model.data.DetectedLanguageText
 import com.esorokin.lantector.model.mapper.DetectLanguageTextMapper
-import com.esorokin.lantector.model.network.api.WatsonPlatformAdi
+import com.esorokin.lantector.model.network.api.WatsonPlatformApi
 import com.esorokin.lantector.model.storage.Database
 import com.esorokin.lantector.utils.ext.subscribeIgnoreResult
 import com.esorokin.lantector.utils.ext.transitSuccessToEmitter
@@ -17,7 +17,7 @@ import javax.inject.Singleton
 @Singleton
 class DetectLanguageService @Inject constructor() {
     @Inject
-    internal lateinit var watsonPlatformAdi: WatsonPlatformAdi
+    internal lateinit var watsonPlatformApi: WatsonPlatformApi
 
     @Inject
     internal lateinit var detectedTextMapper: DetectLanguageTextMapper
@@ -39,7 +39,7 @@ class DetectLanguageService @Inject constructor() {
                 .transitSuccessToEmitter(historyEmitter)
     }
 
-    fun detectLanguage(text: String): Single<DetectedLanguageText> = watsonPlatformAdi.detectLanguage(text)
+    fun detectLanguage(text: String): Single<DetectedLanguageText> = watsonPlatformApi.detectLanguage(text)
             .map { detectedTextMapper.invoke(it, text) }
             .doOnSuccess {
                 database.addDetectedResult(it)

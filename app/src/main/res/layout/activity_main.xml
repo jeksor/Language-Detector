@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout android:id="@+id/drawerLayout"
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:openDrawer="left">
+	xmlns:tools="http://schemas.android.com/tools">
 	
-	<LinearLayout
+	<android.support.v4.widget.DrawerLayout
+		android:id="@+id/drawerLayout"
+		
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical">
+		tools:openDrawer="left">
 		
-		<include layout="@layout/include_default_simple_toolbar" />
-		
-		<FrameLayout
-			android:id="@+id/container"
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent" />
-	</LinearLayout>
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+			
+			<include
+				android:id="@+id/header"
+				layout="@layout/include_default_simple_toolbar" />
+			
+			<FrameLayout
+				android:id="@+id/container"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent" />
+		</LinearLayout>
+		
+		<android.support.design.widget.NavigationView
+			android:id="@+id/navigationView"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_gravity="start"
+			app:headerLayout="@layout/drawer_header"
+			app:menu="@menu/drawer_menu" />
 	
-	<android.support.design.widget.NavigationView
-		android:id="@+id/navigationView"
-		android:layout_width="wrap_content"
-		android:layout_height="match_parent"
-		android:layout_gravity="start"
-		app:headerLayout="@layout/drawer_header"
-		app:menu="@menu/drawer_menu" />
+	</android.support.v4.widget.DrawerLayout>
+</layout>
 
-</android.support.v4.widget.DrawerLayout>
 
 
 

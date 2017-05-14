@@ -1,9 +1,10 @@
 import com.android.builder.core.BuilderConstants
 
+plugins {
+	id "me.tatarka.retrolambda" version "3.5.0"
+}
+
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
@@ -74,24 +75,27 @@ android {
 		}
 	}
 
-	kapt {
-		generateStubs = true
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	//using only for inflate views
+	dataBinding {
+		enabled = true
 	}
 }
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 
-	//kotlin
-	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
 	//mvp
 	compile "com.arello-mobile:moxy:$moxy"
 	compile "com.arello-mobile:moxy-app-compat:$moxy"
-	kapt "com.arello-mobile:moxy-compiler:$moxy"
+	annotationProcessor "com.arello-mobile:moxy-compiler:$moxy"
 
 	//di
-	kapt "com.google.dagger:dagger-compiler:$dagger2"
+	annotationProcessor "com.google.dagger:dagger-compiler:$dagger2"
 	compile "com.google.dagger:dagger:$dagger2"
 	provided 'javax.annotation:jsr250-api:1.0'
 
@@ -115,8 +119,7 @@ dependencies {
 	//db
 	compile "io.requery:requery:$requery"
 	compile "io.requery:requery-android:$requery"
-	compile "io.requery:requery-kotlin:$requery"
-	kapt "io.requery:requery-processor:$requery"
+	annotationProcessor "io.requery:requery-processor:$requery"
 
 	//rx
 	compile "io.reactivex.rxjava2:rxjava:$rxjava"
@@ -126,6 +129,7 @@ dependencies {
 	compile "com.github.aartikov:Alligator:$alligator"
 
 	//utils
+	provided "org.projectlombok:lombok:$lombok"
 	compile "com.jakewharton.timber:timber:$timber"
 	compile "com.hannesdorfmann:adapterdelegates3:$adapterDelegates"
 }

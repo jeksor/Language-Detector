@@ -1,6 +1,6 @@
 package com.esorokin.lantector.model.network.api
 
-import com.esorokin.lantector.model.network.data.detectlanguage.DetectLanguageResponse
+import com.esorokin.lantector.model.network.data.detect.DetectLanguageResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

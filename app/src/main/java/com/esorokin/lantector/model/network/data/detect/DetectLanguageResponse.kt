@@ -1,4 +1,4 @@
-package com.esorokin.lantector.model.network.data.detectlanguage
+package com.esorokin.lantector.model.network.data.detect
 
 import com.esorokin.lantector.model.network.data.BaseResponse
 import org.simpleframework.xml.Element

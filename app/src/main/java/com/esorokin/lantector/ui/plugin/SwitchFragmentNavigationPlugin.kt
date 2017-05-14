@@ -3,7 +3,10 @@ package com.esorokin.lantector.ui.plugin
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import com.art.alligator.*
+import com.art.alligator.NavigationContext
+import com.art.alligator.NavigationContextBinder
+import com.art.alligator.NavigationFactory
+import com.art.alligator.ScreenSwitcher
 import com.art.alligator.screenswitchers.FragmentScreenSwitcher
 import com.esorokin.lantector.di.DependencyManager
 import com.esorokin.lantector.presentation.navigation.TabsInfo
@@ -18,9 +21,6 @@ class SwitchFragmentNavigationPlugin(
 ) : BasePlugin() {
     @Inject
     internal lateinit var navigationContextBinder: NavigationContextBinder
-
-    @Inject
-    internal lateinit var navigator: Navigator
 
     @Inject
     internal lateinit var navigationFactory: NavigationFactory

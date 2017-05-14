@@ -42,7 +42,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideSomethingApi(@Named(BASE_API_QUALIFIER) retrofit: Retrofit): WatsonPlatformApi {
+    fun provideWatsonApi(@Named(BASE_API_QUALIFIER) retrofit: Retrofit): WatsonPlatformApi {
         return retrofit.create(WatsonPlatformApi::class.java)
     }
 }

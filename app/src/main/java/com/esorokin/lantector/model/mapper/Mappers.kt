@@ -1,7 +1,7 @@
 package com.esorokin.lantector.model.mapper
 
 import com.esorokin.lantector.model.data.DetectedLanguageText
-import com.esorokin.lantector.model.network.data.detectlanguage.DetectLanguageResponse
+import com.esorokin.lantector.model.network.data.detect.DetectLanguageResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 

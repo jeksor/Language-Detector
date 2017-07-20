@@ -6,14 +6,14 @@ import android.view.MenuItem
 import android.view.View
 
 class BackPressedToolbarPlugin(
-        delegate: AppCompatActivity,
+        activity: AppCompatActivity,
         private val backClickListener: () -> Unit,
         @StringRes titleRes: Int = 0,
-        title: String? = null) : ToolbarPlugin(delegate, titleRes, title) {
+        title: String? = null) : ToolbarPlugin(activity, titleRes, title) {
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
-        val supportActionBar = dependency.supportActionBar
+        val supportActionBar = activity.supportActionBar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 

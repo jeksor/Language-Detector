@@ -3,9 +3,9 @@ package com.esorokin.lantector.ui.plugin
 import android.content.Context
 import android.support.v7.app.AlertDialog
 import com.esorokin.lantector.R
-import com.esorokin.lantector.ui.plugin.base.BaseDependencyPlugin
+import com.esorokin.lantector.ui.plugin.base.BasePlugin
 
-class AlertMessagePlugin(context: Context) : BaseDependencyPlugin<Context>(context) {
+class AlertMessagePlugin(private val context: Context) : BasePlugin() {
     private var dialog: AlertDialog? = null
 
     override fun onDestroy() {
@@ -15,11 +15,11 @@ class AlertMessagePlugin(context: Context) : BaseDependencyPlugin<Context>(conte
 
     fun showMessage(message: String? = null,
                     title: String? = null,
-                    okText: String = dependency.getString(R.string.ok),
+                    okText: String = context.getString(R.string.ok),
                     hideListener: () -> Unit = {}) {
         hideMessage()
 
-        val builder = AlertDialog.Builder(dependency)
+        val builder = AlertDialog.Builder(context)
 
         title?.let { builder.setTitle(it) }
         message?.let { builder.setMessage(it) }

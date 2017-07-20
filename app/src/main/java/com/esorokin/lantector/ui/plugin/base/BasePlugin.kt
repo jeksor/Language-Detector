@@ -1,11 +1,12 @@
 package com.esorokin.lantector.ui.plugin.base
 
 import android.content.Intent
+import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 
 open class BasePlugin : Plugin {
-    override fun onCreate() {
+    override fun onCreate(savedInstanceState: Bundle?) {
         //override
     }
 
@@ -17,11 +18,19 @@ open class BasePlugin : Plugin {
         //override
     }
 
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        //override
+    }
+
     override fun onResume() {
         //override
     }
 
     override fun onPause() {
+        //override
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
         //override
     }
 

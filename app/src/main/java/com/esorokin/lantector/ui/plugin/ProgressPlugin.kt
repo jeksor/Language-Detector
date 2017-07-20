@@ -2,11 +2,10 @@ package com.esorokin.lantector.ui.plugin
 
 import android.app.ProgressDialog
 import android.content.Context
-
 import com.esorokin.lantector.R
-import com.esorokin.lantector.ui.plugin.base.BaseDependencyPlugin
+import com.esorokin.lantector.ui.plugin.base.BasePlugin
 
-class ProgressPlugin(delegate: Context) : BaseDependencyPlugin<Context>(delegate) {
+class ProgressPlugin(private val context: Context) : BasePlugin() {
     private var dialog: ProgressDialog? = null
 
     override fun onDestroy() {
@@ -16,11 +15,11 @@ class ProgressPlugin(delegate: Context) : BaseDependencyPlugin<Context>(delegate
 
     fun showProgress() {
         hideProgress()
-        dialog = ProgressDialog(dependency).apply {
+        dialog = ProgressDialog(context).apply {
             isIndeterminate = true
             setCancelable(true)
             setCanceledOnTouchOutside(false)
-            setMessage(dependency.getString(R.string.loading))
+            setMessage(context.getString(R.string.loading))
             show()
         }
     }

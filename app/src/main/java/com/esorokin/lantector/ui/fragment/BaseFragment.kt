@@ -2,25 +2,25 @@ package com.esorokin.lantector.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.View
-
-import com.arellomobile.mvp.MvpAppCompatFragment
+import com.esorokin.lantector.ui.plugin.MoxyFragmentPlugin
 import com.esorokin.lantector.ui.plugin.base.CompositionPluginDelegate
 
-open class BaseFragment : MvpAppCompatFragment() {
+abstract class BaseFragment : Fragment() {
     protected val compositionPlugin = CompositionPluginDelegate()
 
     /**
      * Attach your plugins here.
      */
     protected open fun initPlugins() {
-        //override
+        compositionPlugin.attach(MoxyFragmentPlugin(this))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initPlugins()
-        compositionPlugin.onCreate()
+        compositionPlugin.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -47,7 +47,6 @@ open class BaseFragment : MvpAppCompatFragment() {
         super.onStop()
         compositionPlugin.onStop()
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

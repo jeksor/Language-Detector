@@ -5,16 +5,16 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.ViewGroup
-import com.esorokin.lantector.ui.plugin.base.BaseDependencyPlugin
+import com.esorokin.lantector.ui.plugin.base.BasePlugin
 
-open class ToolbarPlugin(delegate: AppCompatActivity,
+open class ToolbarPlugin(protected val activity: AppCompatActivity,
                          @StringRes titleRes: Int = 0,
-                         private var title: String? = null) : BaseDependencyPlugin<AppCompatActivity>(delegate) {
-    private val toolbar: Toolbar? by lazy { getToolbar(dependency.window.decorView) }
+                         private var title: String? = null) : BasePlugin() {
+    private val toolbar: Toolbar? by lazy { getToolbar(activity.window.decorView) }
 
     init {
         if (title.isNullOrEmpty().and(titleRes != 0)) {
-            title = delegate.getString(titleRes)
+            title = activity.getString(titleRes)
         }
     }
 
@@ -22,13 +22,13 @@ open class ToolbarPlugin(delegate: AppCompatActivity,
         super.onViewCreated(view)
 
         toolbar?.let {
-            if (dependency.supportActionBar == null) {
-                dependency.setSupportActionBar(it)
+            if (activity.supportActionBar == null) {
+                activity.setSupportActionBar(it)
             }
 
             if (!title.isNullOrEmpty()) {
                 it.title = title
-                dependency.title = title
+                activity.title = title
             }
         }
     }
@@ -36,7 +36,7 @@ open class ToolbarPlugin(delegate: AppCompatActivity,
     fun changeTitle(title: String) {
         this.title = title
         toolbar?.title = title
-        dependency.title = title
+        activity.title = title
     }
 
     private fun getToolbar(view: View): Toolbar? {

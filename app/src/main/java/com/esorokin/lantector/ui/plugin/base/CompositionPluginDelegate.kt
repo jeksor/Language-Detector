@@ -1,6 +1,7 @@
 package com.esorokin.lantector.ui.plugin.base
 
 import android.content.Intent
+import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 
@@ -13,69 +14,29 @@ class CompositionPluginDelegate : CompositionPlugin {
         plugins.remove(plugin)
     }
 
-    override fun onCreate() {
-        for (plugin in plugins) {
-            plugin.onCreate()
-        }
-    }
+    override fun onCreate(savedInstanceState: Bundle?) = plugins.forEach { it.onCreate(savedInstanceState) }
 
-    override fun onViewCreated(view: View) {
-        for (plugin in plugins) {
-            plugin.onViewCreated(view)
-        }
-    }
+    override fun onViewCreated(view: View) = plugins.forEach { it.onViewCreated(view) }
 
-    override fun onStart() {
-        for (plugin in plugins) {
-            plugin.onStart()
-        }
-    }
+    override fun onStart() = plugins.forEach { it.onStart() }
 
-    override fun onResume() {
-        for (plugin in plugins) {
-            plugin.onResume()
-        }
-    }
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) = plugins.forEach { it.onRestoreInstanceState(savedInstanceState) }
 
-    override fun onPause() {
-        for (plugin in plugins) {
-            plugin.onPause()
-        }
-    }
+    override fun onResume() = plugins.forEach { it.onResume() }
 
-    override fun onStop() {
-        for (plugin in plugins) {
-            plugin.onStop()
-        }
-    }
+    override fun onPause() = plugins.forEach { it.onPause() }
 
-    override fun onDestroy() {
-        for (plugin in plugins) {
-            plugin.onDestroy()
-        }
-    }
+    override fun onSaveInstanceState(outState: Bundle?) = plugins.forEach { it.onSaveInstanceState(outState) }
 
-    override fun onOptionsItemSelected(item: MenuItem) {
-        for (plugin in plugins) {
-            plugin.onOptionsItemSelected(item)
-        }
-    }
+    override fun onStop() = plugins.forEach { it.onStop() }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        for (plugin in plugins) {
-            plugin.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        }
-    }
+    override fun onDestroy() = plugins.forEach { it.onDestroy() }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        for (plugin in plugins) {
-            plugin.onActivityResult(requestCode, resultCode, data)
-        }
-    }
+    override fun onOptionsItemSelected(item: MenuItem) = plugins.forEach { it.onOptionsItemSelected(item) }
 
-    override fun onBackPressed() {
-        for (plugin in plugins) {
-            plugin.onBackPressed()
-        }
-    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) = plugins.forEach { it.onRequestPermissionsResult(requestCode, permissions, grantResults) }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) = plugins.forEach { it.onActivityResult(requestCode, resultCode, data) }
+
+    override fun onBackPressed() = plugins.forEach { it.onBackPressed() }
 }

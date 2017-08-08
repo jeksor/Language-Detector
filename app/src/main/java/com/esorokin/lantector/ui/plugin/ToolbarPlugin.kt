@@ -7,19 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import com.esorokin.lantector.ui.plugin.base.BasePlugin
 
-open class ToolbarPlugin(protected val activity: AppCompatActivity,
-                         @StringRes titleRes: Int = 0,
+open class ToolbarPlugin(protected val activityProvider: () -> AppCompatActivity,
+                         @StringRes val titleRes: Int = 0,
                          private var title: String? = null) : BasePlugin() {
-    private val toolbar: Toolbar? by lazy { getToolbar(activity.window.decorView) }
-
-    init {
-        if (title.isNullOrEmpty().and(titleRes != 0)) {
-            title = activity.getString(titleRes)
-        }
-    }
+    private val toolbar: Toolbar? by lazy { getToolbar(activityProvider.invoke().window.decorView) }
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
+
+        val activity = activityProvider.invoke()
+
+        if (title.isNullOrEmpty().and(titleRes != 0)) {
+            title = activity.getString(titleRes)
+        }
 
         toolbar?.let {
             if (activity.supportActionBar == null) {
@@ -36,7 +36,7 @@ open class ToolbarPlugin(protected val activity: AppCompatActivity,
     fun changeTitle(title: String) {
         this.title = title
         toolbar?.title = title
-        activity.title = title
+        activityProvider.invoke().title = title
     }
 
     private fun getToolbar(view: View): Toolbar? {

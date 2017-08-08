@@ -32,7 +32,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
 
     override fun initPlugins() {
         super.initPlugins()
-        toolbarPlugin = compositionPlugin.attach(ToolbarPlugin(this))
+        toolbarPlugin = compositionPlugin.attach(ToolbarPlugin({ this }))
         fragmentNavigationPlugin = compositionPlugin.attach(SwitchFragmentNavigationPlugin(this, R.id.container, tabsInfo, onScreenSwitched()))
     }
 

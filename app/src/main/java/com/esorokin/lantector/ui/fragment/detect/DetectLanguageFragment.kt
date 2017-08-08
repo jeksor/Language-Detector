@@ -20,17 +20,17 @@ class DetectLanguageFragment : BaseFragment(), DetectLanguageView {
     @InjectPresenter
     internal lateinit var presenter: DetectLanguagePresenter
 
-    private lateinit var errorPlugin: ErrorPlugin
-    private lateinit var progressPlugin: ProgressPlugin
-    private lateinit var alertMessage: AlertMessagePlugin
-    private lateinit var toolbarPlugin: ToolbarPlugin
+    private val errorPlugin: ErrorPlugin = DialogErrorPlugin({ context })
+    private val progressPlugin: ProgressPlugin = ProgressPlugin({ activity })
+    private val alertMessage: AlertMessagePlugin = AlertMessagePlugin({ activity })
+    private val toolbarPlugin: ToolbarPlugin = ToolbarPlugin({ activity as AppCompatActivity }, R.string.screen_title_detect_language)
 
     override fun initPlugins() {
         super.initPlugins()
-        errorPlugin = compositionPlugin.attach(DialogErrorPlugin(activity))
-        progressPlugin = compositionPlugin.attach(ProgressPlugin(activity))
-        alertMessage = compositionPlugin.attach(AlertMessagePlugin(activity))
-        toolbarPlugin = compositionPlugin.attach(ToolbarPlugin(activity as AppCompatActivity, R.string.screen_title_detect_language))
+        compositionPlugin.attach(errorPlugin)
+        compositionPlugin.attach(progressPlugin)
+        compositionPlugin.attach(alertMessage)
+        compositionPlugin.attach(toolbarPlugin)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -47,11 +47,11 @@ class DetectLanguageFragment : BaseFragment(), DetectLanguageView {
     }
 
     override fun showDetectingProgress() {
-       progressPlugin.showProgress()
+        progressPlugin.showProgress()
     }
 
     override fun hideDetectingProgress() {
-       progressPlugin.hideProgress()
+        progressPlugin.hideProgress()
     }
 
     override fun noInternetConnection() {

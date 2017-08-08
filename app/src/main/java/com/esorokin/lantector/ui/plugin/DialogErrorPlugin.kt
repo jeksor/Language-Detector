@@ -6,7 +6,7 @@ import android.support.v7.app.AlertDialog
 import com.esorokin.lantector.R
 import com.esorokin.lantector.presentation.error.UserError
 
-class DialogErrorPlugin(private val context: Context) : ErrorPlugin() {
+class DialogErrorPlugin(private val contextProvider: () -> Context) : ErrorPlugin() {
     private var dialog: AlertDialog? = null
 
     override fun onDestroy() {
@@ -16,7 +16,7 @@ class DialogErrorPlugin(private val context: Context) : ErrorPlugin() {
 
     override fun showUiError(userError: UserError, errorHideListener: () -> Unit) {
         hideUiError()
-        dialog = AlertDialog.Builder(context)
+        dialog = AlertDialog.Builder(contextProvider.invoke())
                 .setTitle(userError.title)
                 .setMessage(userError.message)
                 .setCancelable(true)

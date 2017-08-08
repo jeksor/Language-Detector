@@ -5,7 +5,7 @@ import android.content.Context
 import com.esorokin.lantector.R
 import com.esorokin.lantector.ui.plugin.base.BasePlugin
 
-class ProgressPlugin(private val context: Context) : BasePlugin() {
+class ProgressPlugin(private val contextProvider: () -> Context) : BasePlugin() {
     private var dialog: ProgressDialog? = null
 
     override fun onDestroy() {
@@ -15,7 +15,7 @@ class ProgressPlugin(private val context: Context) : BasePlugin() {
 
     fun showProgress() {
         hideProgress()
-        dialog = ProgressDialog(context).apply {
+        dialog = ProgressDialog(contextProvider.invoke()).apply {
             isIndeterminate = true
             setCancelable(true)
             setCanceledOnTouchOutside(false)

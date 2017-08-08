@@ -25,14 +25,14 @@ class HistoryFragment : BaseFragment(), HistoryView {
     @InjectPresenter
     internal lateinit var presenter: HistoryPresenter
 
-    private lateinit var errorPlugin: ErrorPlugin
+    private val errorPlugin: ErrorPlugin = DialogErrorPlugin({ activity!! })
 
     private lateinit var adapter: HistoryAdapter
 
     override fun initPlugins() {
         super.initPlugins()
-        compositionPlugin.attach(ToolbarPlugin(activity as AppCompatActivity, R.string.screen_title_history))
-        errorPlugin = compositionPlugin.attach(DialogErrorPlugin(activity!!))
+        compositionPlugin.attach(ToolbarPlugin({ activity as AppCompatActivity }, R.string.screen_title_history))
+        compositionPlugin.attach(DialogErrorPlugin({ activity!! }))
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
